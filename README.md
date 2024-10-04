@@ -30,7 +30,7 @@ The project is based on [Maven] and is available at central Maven repository.
 
 Add the property
 ```xml
-<logback-logstash-syntax-highlighting-decorators.version>1.1.0</logback-logstash-syntax-highlighting-decorators.version>
+<logback-logstash-syntax-highlighting-decorators.version>1.1.x</logback-logstash-syntax-highlighting-decorators.version>
 ```
 
 then add
@@ -53,7 +53,7 @@ For
 
 ```groovy
 ext {
-  logbackLogstashSyntaxHighlightingDecoratorsVersion = '1.0.6'
+  logbackLogstashSyntaxHighlightingDecoratorsVersion = '1.1.x'
 }
 ```
 
