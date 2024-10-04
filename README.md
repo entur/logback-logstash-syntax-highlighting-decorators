@@ -177,7 +177,7 @@ Exclude fields with low information value during testing. For example:
 ```
 
 # History
-- 1.1.0: Forked from [logback-logstash-syntax-highlighting-decorators](https://github.com/skjolber/jlogback-logstash-syntax-highlighting-decorators) due to too few maintainers.
+- 1.1.0: Forked from [logback-logstash-syntax-highlighting-decorators](https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators) due to too few maintainers.
 
 [Apache 2.0]:          		http://www.apache.org/licenses/LICENSE-2.0.html
 [issue-tracker]:       		https://github.com/entur/logback-logstash-syntax-highlighting-decorators/issues
