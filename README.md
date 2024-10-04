@@ -1,5 +1,5 @@
-![Build Status](https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/actions/workflows/maven.yml/badge.svg) 
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.skjolber.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators.svg)](https://mvnrepository.com/artifact/com.github.skjolber.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators)
+![Build Status](https://github.com/entur/logback-logstash-syntax-highlighting-decorators/actions/workflows/maven.yml/badge.svg) 
+[![Maven Central](https://img.shields.io/maven-central/v/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators.svg)](https://mvnrepository.com/artifact/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators)
 
 # logback-logstash-syntax-highlighting-decorators
 ANSI syntax highlighting for [logstash-logback-encoder] JSON output.
@@ -30,14 +30,14 @@ The project is based on [Maven] and is available at central Maven repository.
 
 Add the property
 ```xml
-<logback-logstash-syntax-highlighting-decorators.version>1.0.6</logback-logstash-syntax-highlighting-decorators.version>
+<logback-logstash-syntax-highlighting-decorators.version>1.1.0</logback-logstash-syntax-highlighting-decorators.version>
 ```
 
 then add
 
 ```xml
 <dependency>
-    <groupId>com.github.skjolber.logback-logstash-syntax-highlighting-decorators</groupId>
+    <groupId>org.entur.logback-logstash-syntax-highlighting-decorators</groupId>
     <artifactId>logback-logstash-syntax-highlighting-decorators</artifactId>
     <version>${logback-logstash-syntax-highlighting-decorators.version}</version>
 </dependency>
@@ -60,7 +60,7 @@ ext {
 add
 
 ```groovy
-implementation ("com.github.skjolber.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:${logbackLogstashSyntaxHighlightingDecoratorsVersion}")
+implementation ("org.entur.logback-logstash-syntax-highlighting-decorators:logback-logstash-syntax-highlighting-decorators:${logbackLogstashSyntaxHighlightingDecoratorsVersion}")
 ```
 </details>
 
@@ -71,7 +71,7 @@ Add a [JsonGeneratorDecorator]:
 <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
         <!-- add pretty-printing and syntax highlighting for testing -->
-        <jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator"/>
+        <jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator"/>
     </encoder>
 </appender>
 ```
@@ -82,8 +82,8 @@ The default decorator is aware of the log-level and highlights `WARN` and `ERROR
 Define your own colors using `ConfigurableSyntaxHighlighter`:
 
 ```xml
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
-    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.ConfigurableSyntaxHighlighterFactory">
+<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
+    <syntaxHighlighterFactory class="org.entur.decorators.factory.ConfigurableSyntaxHighlighterFactory">
         <stringValue>blue</stringValue>
         <numberValue>black highIntensity</numberValue>
         <fieldName>red</fieldName>
@@ -102,8 +102,8 @@ Define your own colors using `ConfigurableSyntaxHighlighter`:
 and space-separated foreground, background and style keys. For special handling of fields `message` and `level`, use the `LogLevelSyntaxHighlighterFactory`:
 
 ```xml
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
-    <syntaxHighlighterFactory class="com.github.skjolber.decorators.factory.LogLevelSyntaxHighlighterFactory">
+<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
+    <syntaxHighlighterFactory class="org.entur.decorators.factory.LogLevelSyntaxHighlighterFactory">
         <level>
             <info>green</info>
             <warning>yellow</warning>
@@ -119,7 +119,7 @@ Pretty-printing (with newline + indent) is enabled by default. To disable it, a 
 
 
 ```xml
-<jsonGeneratorDecorator class="com.github.skjolber.decorators.SyntaxHighlightingDecorator">
+<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
 	<prettyPrint>false</prettyPrint>
 </jsonGeneratorDecorator>
 ```
@@ -177,16 +177,13 @@ Exclude fields with low information value during testing. For example:
 ```
 
 # History
- - 1.0.6: Do not set default colors.
- - 1.0.5: Add option for single-line output
- - 1.0.1-1.0.4: Update Jackson dependency due to security issue and dependency updates
- - 1.0.0: Initial version
+- 1.1.0: Forked from [logback-logstash-syntax-highlighting-decorators](https://github.com/skjolber/jlogback-logstash-syntax-highlighting-decorators) due to too few maintainers.
 
 [Apache 2.0]:          		http://www.apache.org/licenses/LICENSE-2.0.html
-[issue-tracker]:       		https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/issues
+[issue-tracker]:       		https://github.com/entur/logback-logstash-syntax-highlighting-decorators/issues
 [Maven]:                	http://maven.apache.org/
-[1.0.2]:					https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators/releases/tag/logback-logstash-syntax-highlighting-decorators-1.0.1
-[jackson-syntax-highlight]:	https://github.com/skjolber/jackson-syntax-highlight
+[1.0.2]:					https://github.com/entur/logback-logstash-syntax-highlighting-decorators/releases/tag/logback-logstash-syntax-highlighting-decorators-1.0.1
+[jackson-syntax-highlight]:	https://github.com/entur/jackson-syntax-highlight
 [Jackson]:					https://github.com/FasterXML/jackson
 [ANSI]:						https://en.wikipedia.org/wiki/ANSI_escape_code
 [JSON]:						https://no.wikipedia.org/wiki/JSON

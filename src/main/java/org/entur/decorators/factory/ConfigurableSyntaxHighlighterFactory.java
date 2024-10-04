@@ -1,4 +1,4 @@
-package com.github.skjolber.decorators.factory;
+package org.entur.decorators.factory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.util.List;
 import org.apache.commons.text.StringEscapeUtils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter.Builder;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import org.entur.jackson.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.jsh.DefaultSyntaxHighlighter.Builder;
+import org.entur.jackson.jsh.SyntaxHighlighter;
 /**
  * Configurable syntax highlighter factory.
  * <br><br>

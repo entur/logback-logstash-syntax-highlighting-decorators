@@ -1,11 +1,11 @@
-package com.github.skjolber.decorators.factory;
+package org.entur.decorators.factory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import org.entur.decorators.syntaxhighlight.ListSyntaxHighlighter;
+import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 

@@ -1,4 +1,4 @@
-package com.github.skjolber.decorators;
+package org.entur.decorators;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,12 +7,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.decorators.factory.ListSyntaxHighlighterFactory;
-import com.github.skjolber.decorators.factory.SyntaxHighlighterFactory;
-import com.github.skjolber.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import org.entur.decorators.factory.ListSyntaxHighlighterFactory;
+import org.entur.decorators.factory.SyntaxHighlighterFactory;
+import org.entur.decorators.syntaxhighlight.ListSyntaxHighlighter;
+import org.entur.jackson.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactoryTest {
 

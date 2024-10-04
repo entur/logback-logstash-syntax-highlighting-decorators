@@ -1,10 +1,10 @@
-package com.github.skjolber.decorators.factory;
+package org.entur.decorators.factory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonStreamContext;
-import com.github.skjolber.jackson.jsh.JsonStreamContextListener;
+import org.entur.jackson.jsh.JsonStreamContextListener;
 
 public class ListJsonStreamContextListener implements JsonStreamContextListener {
 

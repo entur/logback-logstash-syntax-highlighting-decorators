@@ -1,9 +1,9 @@
-package com.github.skjolber.decorators.syntaxhighlight;
+package org.entur.decorators.syntaxhighlight;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public abstract class DelegateSyntaxHighlighter implements SyntaxHighlighter {
 

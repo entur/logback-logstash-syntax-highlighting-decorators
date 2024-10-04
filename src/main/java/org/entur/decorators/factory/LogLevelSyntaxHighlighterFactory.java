@@ -1,10 +1,10 @@
-package com.github.skjolber.decorators.factory;
+package org.entur.decorators.factory;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.github.skjolber.decorators.syntaxhighlight.LogLevelSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.AnsiSyntaxHighlight;
-import com.github.skjolber.jackson.jsh.DefaultSyntaxHighlighter;
-import com.github.skjolber.jackson.jsh.SyntaxHighlighter;
+import org.entur.decorators.syntaxhighlight.LogLevelSyntaxHighlighter;
+import org.entur.jackson.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public class LogLevelSyntaxHighlighterFactory extends ConfigurableSyntaxHighlighterFactory {
 

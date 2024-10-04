@@ -1,4 +1,4 @@
-package com.github.skjolber.decorators;
+package org.entur.decorators;
 
 import org.junit.Test;
 import org.slf4j.Logger;

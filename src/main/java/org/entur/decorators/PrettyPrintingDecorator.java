@@ -1,4 +1,4 @@
-package com.github.skjolber.decorators;
+package org.entur.decorators;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 
