@@ -1,16 +1,15 @@
 package org.entur.decorators.factory;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.StringWriter;
-
-import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import org.entur.decorators.factory.LogLevelSyntaxHighlighterFactory.Level;
 import org.entur.decorators.syntaxhighlight.LogLevelSyntaxHighlighter;
 import org.entur.jackson.jsh.SyntaxHighlighter;
+import org.junit.jupiter.api.Test;
 
 public class LogLevelSyntaxHighlighterFactoryTest {
 	
