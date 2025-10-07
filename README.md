@@ -1,4 +1,3 @@
-![Build Status](https://github.com/entur/logback-logstash-syntax-highlighting-decorators/actions/workflows/maven.yml/badge.svg) 
 [![Maven Central](https://img.shields.io/maven-central/v/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators.svg)](https://mvnrepository.com/artifact/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators)
 
 # logback-logstash-syntax-highlighting-decorators
