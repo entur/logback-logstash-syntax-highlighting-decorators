@@ -50,6 +50,7 @@ public class SyntaxHighlightingMapperBuilderDecorator<M extends ObjectMapper, B 
         return super.createSyntaxHighlighter();
     }
 
+    @Override
     public void addSyntaxHighlighterFactory(SyntaxHighlighterFactory factory) {
         factories.add(factory);
     }
