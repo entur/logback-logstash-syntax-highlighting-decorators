@@ -4,7 +4,7 @@
 		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
 			<!-- add pretty-printing with syntax highlighting -->
             <!-- remove unnecessary fields in testing -->
-			<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
+			<decorator class="org.entur.decorators.SyntaxHighlightingMapperBuilderDecorator">
 				<syntaxHighlighterFactory class="org.entur.decorators.factory.LogLevelSyntaxHighlighterFactory">
 					<stringValue>blue</stringValue>
 					<numberValue>black highIntensity</numberValue>
@@ -24,8 +24,8 @@
 					</level>
 					<message>highIntensity blue</message>
  				</syntaxHighlighterFactory>
-				<prettyPrint>true</prettyPrint>
-			</jsonGeneratorDecorator>
+			</decorator>
+			<decorator class="org.entur.decorators.SyntaxHighlightingJsonGeneratorDecorator"/>
 		    <fieldNames>
 		        <levelValue>[ignore]</levelValue>
 		        <version>[ignore]</version>

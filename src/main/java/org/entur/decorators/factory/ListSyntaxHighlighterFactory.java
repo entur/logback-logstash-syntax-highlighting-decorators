@@ -1,11 +1,11 @@
 package org.entur.decorators.factory;
 
+import org.entur.decorators.syntaxhighlight.ListSyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import org.entur.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 
@@ -15,15 +15,15 @@ public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 		factories.add(factory);
 	}
 
-	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+	public SyntaxHighlighter createSyntaxHighlighter() {
 		if (factories.size() == 1) {
-			return factories.get(0).createSyntaxHighlighter(generator);
+			return factories.get(0).createSyntaxHighlighter();
 		}
 
 		List<SyntaxHighlighter> highlighterList = new ArrayList<>(factories.size());
 
 		for (SyntaxHighlighterFactory factory : factories) {
-			highlighterList.add(factory.createSyntaxHighlighter(generator));
+			highlighterList.add(factory.createSyntaxHighlighter());
 		}
 
 		return new ListSyntaxHighlighter(highlighterList);

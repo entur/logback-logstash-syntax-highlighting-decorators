@@ -1,7 +1,7 @@
 package org.entur.decorators.syntaxhighlight;
 
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.SyntaxHighlighter;
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
 
 public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 
@@ -23,7 +23,7 @@ public class LogLevelSyntaxHighlighter extends DelegateSyntaxHighlighter {
 	protected String message;
 
 	public LogLevelSyntaxHighlighter(SyntaxHighlighter delegate, String trace, String debug, String info, String warn,
-			String error, String message) {
+									 String error, String message) {
 		super(delegate);
 
 		this.trace = trace;

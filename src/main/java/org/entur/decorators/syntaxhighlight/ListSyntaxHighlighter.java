@@ -1,11 +1,11 @@
 package org.entur.decorators.syntaxhighlight;
 
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
-
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.SyntaxHighlighter;
 
 public class ListSyntaxHighlighter implements SyntaxHighlighter {
 
