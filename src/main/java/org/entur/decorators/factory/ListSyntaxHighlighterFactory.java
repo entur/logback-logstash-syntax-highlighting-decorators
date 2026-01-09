@@ -15,6 +15,7 @@ public class ListSyntaxHighlighterFactory implements SyntaxHighlighterFactory {
 		factories.add(factory);
 	}
 
+	@Override
 	public SyntaxHighlighter createSyntaxHighlighter() {
 		if (factories.size() == 1) {
 			return factories.get(0).createSyntaxHighlighter();
