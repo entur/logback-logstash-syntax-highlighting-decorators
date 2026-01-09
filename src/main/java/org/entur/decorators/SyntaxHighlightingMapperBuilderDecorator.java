@@ -30,8 +30,11 @@ public class SyntaxHighlightingMapperBuilderDecorator<M extends ObjectMapper, B 
     public B decorate(B mapperBuilder) {
         SyntaxHighlighter syntaxHighlighter = createSyntaxHighlighter();
 
+        if(prettyPrint) {
+            mapperBuilder = mapperBuilder.enable(SerializationFeature.INDENT_OUTPUT);
+        }
+
         return mapperBuilder
-                .enable(SerializationFeature.INDENT_OUTPUT)
                 .defaultPrettyPrinter(new SyntaxHighlightingPrettyPrinter(syntaxHighlighter));
     }
 
