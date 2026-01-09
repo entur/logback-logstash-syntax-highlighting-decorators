@@ -72,7 +72,7 @@ Add a [JsonGeneratorDecorator]:
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
         <!-- add pretty-printing and syntax highlighting for testing -->
         <decorator class="org.entur.decorators.SyntaxHighlightingMapperBuilderDecorator"/>
-        <decorator class="org.entur.decorators.SyntaxHighlightingJsonGeneratorDecorator"/>        
+        <decorator class="org.entur.decorators.SyntaxHighlightingJsonGeneratorDecorator"/>
     </encoder>
 </appender>
 ```
