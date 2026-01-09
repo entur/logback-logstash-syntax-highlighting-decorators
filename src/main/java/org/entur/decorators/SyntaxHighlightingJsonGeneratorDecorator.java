@@ -46,7 +46,7 @@ public class SyntaxHighlightingJsonGeneratorDecorator implements JsonGeneratorDe
             }
 
             return new SyntaxHighlightingJsonGenerator(jsonGenerator, prettyPrinter, prettyPrinter.getObjectIndenter(), prettyPrinter.getArrayIndenter(), prettyPrinter.getSyntaxHighlighter());
-        } else if(candidate != null) {
+        } else if (candidate != null) {
             throw new IllegalStateException("Expected pretty-printer of type " + SyntaxHighlightingPrettyPrinter.class.getName() + ", found " + candidate.getClass().getName() + ".");
         } else {
             throw new IllegalStateException("Expected pretty-printer of type " + SyntaxHighlightingPrettyPrinter.class.getName());
