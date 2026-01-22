@@ -6,9 +6,13 @@ on:
   pull_request:
     branches:
       - "master"
+    paths-ignore:
+      - '**/README.md'
   push:
     branches:
       - "master"
+    paths-ignore:
+      - '**/README.md'
 
 jobs:
   code-scan:
@@ -18,4 +22,4 @@ jobs:
     with:
       use_setup_java: true
       use_maven_cache: true
-      java_version: "21"
+      java_version: "25"

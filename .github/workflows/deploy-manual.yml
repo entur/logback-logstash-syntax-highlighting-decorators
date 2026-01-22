@@ -34,7 +34,7 @@ jobs:
     if: success()
     uses: entur/gha-slack/.github/workflows/post.yml@v2
     with:
-      channel_id: ${{ vars.CHANNEL_ID}}
+      channel_id: ${{ vars.CHANNEL_ID }}
       message: "🟢 Maven artifact deploy success for ${{ github.repository }}\n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
     secrets: inherit
 
