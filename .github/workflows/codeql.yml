@@ -14,6 +14,13 @@ on:
     paths-ignore:
       - '**/README.md'
 
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+  security-events: write
+  issues: write
+
 jobs:
   code-scan:
     name: CodeQL Scan
