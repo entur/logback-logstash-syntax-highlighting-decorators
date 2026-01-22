@@ -44,24 +44,24 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<jreleaser-maven-plugin.version>1.18.0</jreleaser-maven-plugin.version>
-		<junit-jupiter.version>5.11.4</junit-jupiter.version>
-		<junit.platform.version>1.11.4</junit.platform.version>
+		<jreleaser-maven-plugin.version>1.22.0</jreleaser-maven-plugin.version>
+		<junit-jupiter.version>6.0.2</junit-jupiter.version>
 		<maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
-		<maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-		<maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-		<maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+		<maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
+		<maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+		<maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 
 		<logstash-logback-encoder.version>8.1</logstash-logback-encoder.version>
 		<jackson-syntax-highlight.version>1.1.1</jackson-syntax-highlight.version>
-		<commons-text.version>1.13.1</commons-text.version>
-		<jackson.version>2.19.1</jackson.version>
-		<logback.version>1.5.18</logback.version>
+		<commons-text.version>1.15.0</commons-text.version>
+        
+		<jackson.version>2.21.0</jackson.version>
+		<logback.version>1.5.24</logback.version>
 		<slf4j.version>2.0.17</slf4j.version>
 
-		<maven.jacoco.plugin.version>0.8.13</maven.jacoco.plugin.version>
+		<maven.jacoco.plugin.version>0.8.14</maven.jacoco.plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -89,6 +89,12 @@
 			<version>${logstash-logback-encoder.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 		  <groupId>org.apache.commons</groupId>
 		  <artifactId>commons-text</artifactId>
 		  <version>${commons-text.version}</version>
@@ -114,12 +120,6 @@
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-params</artifactId>
 			<version>${junit-jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-suite</artifactId>
-			<version>${junit.platform.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -256,7 +256,7 @@
 			<plugin>
 				<groupId>org.moditect</groupId>
 				<artifactId>moditect-maven-plugin</artifactId>
-				<version>1.2.2.Final</version>
+				<version>1.3.0.Final</version>
 				<executions>
 					<execution>
 						<id>add-module-infos</id>
@@ -273,7 +273,39 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>				
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.6.2</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<bannedPlugins>
+									<!-- will only display a warning but does not fail the build. -->
+									<level>WARN</level>
+									<excludes>
+										<exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
+									</excludes>
+									<message>Please consider using the maven-invoker-plugin
+										(http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
+								</bannedPlugins>
+								<requireMavenVersion>
+									<version>3.6.3</version>
+								</requireMavenVersion>
+								<requireJavaVersion>
+									<version>17</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
