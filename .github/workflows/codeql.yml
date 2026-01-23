@@ -6,9 +6,20 @@ on:
   pull_request:
     branches:
       - "master"
+    paths-ignore:
+      - '**/README.md'
   push:
     branches:
       - "master"
+    paths-ignore:
+      - '**/README.md'
+
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+  security-events: write
+  issues: write
 
 jobs:
   code-scan:
@@ -18,4 +29,4 @@ jobs:
     with:
       use_setup_java: true
       use_maven_cache: true
-      java_version: "21"
+      java_version: "25"
