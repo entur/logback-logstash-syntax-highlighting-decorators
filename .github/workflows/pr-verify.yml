@@ -1,4 +1,4 @@
-name: validate-maven-build
+name: Verify PR
 on:
   pull_request:
     types:
@@ -6,7 +6,5 @@ on:
       - opened
 
 jobs:
-  validate-maven-build:
+  verify-pr:
     uses: entur/abt-gha-public/.github/workflows/maven-open-source-verify.yml@main
-    with:
-      java-version: 25
