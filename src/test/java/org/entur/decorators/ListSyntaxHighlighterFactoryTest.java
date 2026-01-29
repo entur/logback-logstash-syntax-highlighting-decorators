@@ -2,16 +2,15 @@ package org.entur.decorators;
 
 
 
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
 import org.junit.jupiter.api.Test;
 
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import org.entur.decorators.factory.ListSyntaxHighlighterFactory;
 import org.entur.decorators.factory.SyntaxHighlighterFactory;
 import org.entur.decorators.syntaxhighlight.ListSyntaxHighlighter;
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
-import org.entur.jackson.jsh.SyntaxHighlighter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,20 +23,20 @@ public class ListSyntaxHighlighterFactoryTest {
 		factory.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
 
 			@Override
-			public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+			public SyntaxHighlighter createSyntaxHighlighter() {
 				return DefaultSyntaxHighlighter.newBuilder().withComma(AnsiSyntaxHighlight.GREEN).build();
 			}
 
 		});
 
-		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
+		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter();
 		assertFalse(syntaxHighlighter instanceof ListSyntaxHighlighter);
 		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.GREEN), syntaxHighlighter.forComma());
 	}
 
 	@Test
 	public void testMultiple() {
-		SyntaxHighlightingDecorator factory = new SyntaxHighlightingDecorator();
+		ListSyntaxHighlighterFactory factory = new ListSyntaxHighlighterFactory();
 
 		String[] colors = new String[] { AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN };
 
@@ -45,13 +44,13 @@ public class ListSyntaxHighlighterFactoryTest {
 			factory.addSyntaxHighlighterFactory(new SyntaxHighlighterFactory() {
 
 				@Override
-				public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+				public SyntaxHighlighter createSyntaxHighlighter() {
 					return DefaultSyntaxHighlighter.newBuilder().withComma(str).build();
 				}
 			});
 		}
 
-		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(null);
+		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter();
 		assertTrue(syntaxHighlighter instanceof ListSyntaxHighlighter);
 		assertEquals(AnsiSyntaxHighlight.build(AnsiSyntaxHighlight.RED, AnsiSyntaxHighlight.GREEN),
 				syntaxHighlighter.forComma());

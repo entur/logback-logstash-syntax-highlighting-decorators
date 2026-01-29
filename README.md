@@ -1,4 +1,4 @@
-![Build Status](https://github.com/entur/logback-logstash-syntax-highlighting-decorators/actions/workflows/maven.yml/badge.svg) 
+![Build Status](https://github.com/entur/logback-logstash-syntax-highlighting-decorators/actions/workflows/master-verify.yml/badge.svg) 
 [![Maven Central](https://img.shields.io/maven-central/v/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators.svg)](https://mvnrepository.com/artifact/org.entur.logback-logstash-syntax-highlighting-decorators/logback-logstash-syntax-highlighting-decorators)
 
 # logback-logstash-syntax-highlighting-decorators
@@ -30,7 +30,7 @@ The project is based on [Maven] and is available at central Maven repository.
 
 Add the property
 ```xml
-<logback-logstash-syntax-highlighting-decorators.version>1.1.x</logback-logstash-syntax-highlighting-decorators.version>
+<logback-logstash-syntax-highlighting-decorators.version>2.0.x</logback-logstash-syntax-highlighting-decorators.version>
 ```
 
 then add
@@ -53,7 +53,7 @@ For
 
 ```groovy
 ext {
-  logbackLogstashSyntaxHighlightingDecoratorsVersion = '1.1.x'
+  logbackLogstashSyntaxHighlightingDecoratorsVersion = '2.0.x'
 }
 ```
 
@@ -71,7 +71,8 @@ Add a [JsonGeneratorDecorator]:
 <appender name="STDOUT_JSON" class="ch.qos.logback.core.ConsoleAppender">
     <encoder class="net.logstash.logback.encoder.LogstashEncoder">
         <!-- add pretty-printing and syntax highlighting for testing -->
-        <jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator"/>
+        <decorator class="org.entur.decorators.SyntaxHighlightingMapperBuilderDecorator"/>
+        <decorator class="org.entur.decorators.SyntaxHighlightingJsonGeneratorDecorator"/>
     </encoder>
 </appender>
 ```
@@ -82,7 +83,7 @@ The default decorator is aware of the log-level and highlights `WARN` and `ERROR
 Define your own colors using `ConfigurableSyntaxHighlighter`:
 
 ```xml
-<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
+<decorator class="org.entur.decorators.SyntaxHighlightingMapperBuilderDecorator">
     <syntaxHighlighterFactory class="org.entur.decorators.factory.ConfigurableSyntaxHighlighterFactory">
         <stringValue>blue</stringValue>
         <numberValue>black highIntensity</numberValue>
@@ -96,13 +97,13 @@ Define your own colors using `ConfigurableSyntaxHighlighter`:
         <whitespace>green</whitespace>
         <comma>green</comma>
     </syntaxHighlighterFactory>
-</jsonGeneratorDecorator>
+</decorator>
  ```
 
 and space-separated foreground, background and style keys. For special handling of fields `message` and `level`, use the `LogLevelSyntaxHighlighterFactory`:
 
 ```xml
-<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
+<decorator class="org.entur.decorators.SyntaxHighlightingMapperBuilderDecorator">
     <syntaxHighlighterFactory class="org.entur.decorators.factory.LogLevelSyntaxHighlighterFactory">
         <level>
             <info>green</info>
@@ -111,17 +112,7 @@ and space-separated foreground, background and style keys. For special handling 
         </level>
         <message>highIntensity blue</message>
     </syntaxHighlighterFactory>
-</jsonGeneratorDecorator>
-```
-
-#### Pretty-printing
-Pretty-printing (with newline + indent) is enabled by default. To disable it, a `prettyPrint`-element under `SyntaxHighlightingDecorator` like so:
-
-
-```xml
-<jsonGeneratorDecorator class="org.entur.decorators.SyntaxHighlightingDecorator">
-	<prettyPrint>false</prettyPrint>
-</jsonGeneratorDecorator>
+</decorator>
 ```
 
 ### Foreground color
@@ -177,6 +168,7 @@ Exclude fields with low information value during testing. For example:
 ```
 
 # History
+- 2.0.0: Support for Jackson 3.x + Logback Logstash version 9.
 - 1.1.0: Forked from [logback-logstash-syntax-highlighting-decorators](https://github.com/skjolber/logback-logstash-syntax-highlighting-decorators) due to too few maintainers.
 
 [Apache 2.0]:          		http://www.apache.org/licenses/LICENSE-2.0.html

@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.text.StringEscapeUtils;
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
-import org.entur.jackson.jsh.DefaultSyntaxHighlighter.Builder;
-import org.entur.jackson.jsh.SyntaxHighlighter;
 /**
  * Configurable syntax highlighter factory.
  * <br><br>
@@ -85,7 +83,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 		this(DefaultSyntaxHighlighter.newBuilder());
 	}
 
-	public ConfigurableSyntaxHighlighterFactory(Builder builder) {
+	public ConfigurableSyntaxHighlighterFactory(DefaultSyntaxHighlighter.Builder builder) {
 		this.builder = builder;
 	}
 
@@ -197,7 +195,7 @@ public class ConfigurableSyntaxHighlighterFactory implements SyntaxHighlighterFa
 	}
 
 	@Override
-	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+	public SyntaxHighlighter createSyntaxHighlighter() {
 		return builder.build();
 	}
 

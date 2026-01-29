@@ -1,47 +1,47 @@
 package org.entur.decorators.factory;
 
+import org.entur.jackson.tools.jsh.TokenStreamContextListener;
+import tools.jackson.core.TokenStreamContext;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonStreamContext;
-import org.entur.jackson.jsh.JsonStreamContextListener;
+public class ListJsonStreamContextListener implements TokenStreamContextListener {
 
-public class ListJsonStreamContextListener implements JsonStreamContextListener {
+	protected List<TokenStreamContextListener> listeners;
 
-	protected List<JsonStreamContextListener> listeners;
-
-	public ListJsonStreamContextListener(List<JsonStreamContextListener> listeners) {
+	public ListJsonStreamContextListener(List<TokenStreamContextListener> listeners) {
 		this.listeners = listeners;
 	}
 
 	public ListJsonStreamContextListener() {
-		this(new ArrayList<JsonStreamContextListener>());
+		this(new ArrayList<TokenStreamContextListener>());
 	}
 
 	@Override
-	public void startObject(JsonStreamContext outputContext) {
-		for (JsonStreamContextListener listener : listeners) {
+	public void startObject(TokenStreamContext outputContext) {
+		for (TokenStreamContextListener listener : listeners) {
 			listener.startObject(outputContext);
 		}
 	}
 
 	@Override
-	public void endObject(JsonStreamContext outputContext) {
-		for (JsonStreamContextListener listener : listeners) {
+	public void endObject(TokenStreamContext outputContext) {
+		for (TokenStreamContextListener listener : listeners) {
 			listener.endObject(outputContext);
 		}
 	}
 
 	@Override
-	public void startArray(JsonStreamContext outputContext) {
-		for (JsonStreamContextListener listener : listeners) {
+	public void startArray(TokenStreamContext outputContext) {
+		for (TokenStreamContextListener listener : listeners) {
 			listener.startArray(outputContext);
 		}
 	}
 
 	@Override
-	public void endArray(JsonStreamContext outputContext) {
-		for (JsonStreamContextListener listener : listeners) {
+	public void endArray(TokenStreamContext outputContext) {
+		for (TokenStreamContextListener listener : listeners) {
 			listener.endArray(outputContext);
 		}
 	}

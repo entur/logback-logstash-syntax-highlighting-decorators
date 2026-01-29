@@ -1,21 +1,22 @@
 package org.entur.decorators;
 
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
+import org.entur.jackson.tools.jsh.TokenStreamContextListener;
+import tools.jackson.core.TokenStreamContext;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import com.fasterxml.jackson.core.JsonStreamContext;
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
-import org.entur.jackson.jsh.JsonStreamContextListener;
-import org.entur.jackson.jsh.SyntaxHighlighter;
 
 /**
  * 
- * Resolver which returns two different {@linkplain SyntaxHighlighter}s based on
+ * Resolver which returns two different {@linkplain org.entur.jackson.tools.jsh.SyntaxHighlighter}s based on
  * the context location.
  */
 
-public class SubtreeJsonStreamContextListener implements JsonStreamContextListener, SyntaxHighlighter {
+public class SubtreeJsonStreamContextListener implements TokenStreamContextListener, SyntaxHighlighter {
 
 	private SyntaxHighlighter base = new DefaultSyntaxHighlighter();
 
@@ -28,7 +29,7 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 
 	private int level = 0;
 
-	public SyntaxHighlighter field(JsonStreamContext context) {
+	public SyntaxHighlighter field(TokenStreamContext context) {
 		if (context.pathAsPointer().toString().equals("/object")) {
 			return numberField;
 		}
@@ -37,14 +38,14 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	}
 
 	@Override
-	public void startObject(JsonStreamContext outputContext) {
+	public void startObject(TokenStreamContext outputContext) {
 		this.delegate = field(outputContext);
 
 		level++;
 	}
 
 	@Override
-	public void endObject(JsonStreamContext outputContext) {
+	public void endObject(TokenStreamContext outputContext) {
 		// reset
 		this.delegate = base;
 
@@ -52,14 +53,14 @@ public class SubtreeJsonStreamContextListener implements JsonStreamContextListen
 	}
 
 	@Override
-	public void startArray(JsonStreamContext outputContext) {
+	public void startArray(TokenStreamContext outputContext) {
 		this.delegate = field(outputContext);
 
 		level++;
 	}
 
 	@Override
-	public void endArray(JsonStreamContext outputContext) {
+	public void endArray(TokenStreamContext outputContext) {
 		// reset
 		this.delegate = base;
 

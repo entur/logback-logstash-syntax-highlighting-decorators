@@ -4,19 +4,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.StringWriter;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonGenerator;
 import org.entur.decorators.factory.LogLevelSyntaxHighlighterFactory.Level;
 import org.entur.decorators.syntaxhighlight.LogLevelSyntaxHighlighter;
-import org.entur.jackson.jsh.SyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.core.json.JsonFactory;
 
 public class LogLevelSyntaxHighlighterFactoryTest {
 	
 	@Test
 	public void testLogLevelSyntaxHighlighterFactory() throws Exception {
-		StringWriter writer = new StringWriter();
-
 		LogLevelSyntaxHighlighterFactory factory = new LogLevelSyntaxHighlighterFactory();
 		factory.setMessage("black");
 		
@@ -28,9 +26,7 @@ public class LogLevelSyntaxHighlighterFactoryTest {
 		
 		factory.setLevel(level);
 		
-		JsonGenerator vanilla = new JsonFactory().createGenerator(writer);
-
-		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter(vanilla);
+		SyntaxHighlighter syntaxHighlighter = factory.createSyntaxHighlighter();
 		assertTrue(syntaxHighlighter instanceof LogLevelSyntaxHighlighter);
 
 	}

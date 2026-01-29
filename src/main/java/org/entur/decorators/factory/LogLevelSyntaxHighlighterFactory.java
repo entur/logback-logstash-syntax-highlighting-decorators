@@ -1,10 +1,9 @@
 package org.entur.decorators.factory;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import org.entur.decorators.syntaxhighlight.LogLevelSyntaxHighlighter;
-import org.entur.jackson.jsh.AnsiSyntaxHighlight;
-import org.entur.jackson.jsh.DefaultSyntaxHighlighter;
-import org.entur.jackson.jsh.SyntaxHighlighter;
+import org.entur.jackson.tools.jsh.AnsiSyntaxHighlight;
+import org.entur.jackson.tools.jsh.DefaultSyntaxHighlighter;
+import org.entur.jackson.tools.jsh.SyntaxHighlighter;
 
 public class LogLevelSyntaxHighlighterFactory extends ConfigurableSyntaxHighlighterFactory {
 
@@ -47,9 +46,9 @@ public class LogLevelSyntaxHighlighterFactory extends ConfigurableSyntaxHighligh
 	}
 
 	@Override
-	public SyntaxHighlighter createSyntaxHighlighter(JsonGenerator generator) {
+	public SyntaxHighlighter createSyntaxHighlighter() {
 		if (cachedSyntaxHighlighter == null) {
-			cachedSyntaxHighlighter = super.createSyntaxHighlighter(generator);
+			cachedSyntaxHighlighter = super.createSyntaxHighlighter();
 		}
 		return new LogLevelSyntaxHighlighter(cachedSyntaxHighlighter, level.trace, level.debug, level.info, level.warning, level.error, message);
 	}
