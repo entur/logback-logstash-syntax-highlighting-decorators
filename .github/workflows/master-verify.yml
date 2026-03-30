@@ -7,11 +7,18 @@ on:
 jobs:
   verify-main:
     uses: entur/abt-gha-public/.github/workflows/maven-open-source-verify.yml@main
+    permissions:
+      contents: read
+    with:
+      java-version: 25
+    # no secrets necessary
 
   post-failure-to-slack:
     needs: verify-main
     if: failure()
     uses: entur/gha-slack/.github/workflows/post.yml@v2
+    permissions:
+      contents: read
     with:
       channel_id: ${{ vars.CHANNEL_ID }}
       message: "🔴 Maven build failed for ${{ github.repository }}\n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -21,6 +28,8 @@ jobs:
     needs: verify-main
     if: success()
     uses: entur/gha-slack/.github/workflows/post.yml@v2
+    permissions:
+      contents: read
     with:
       channel_id: ${{ vars.CHANNEL_ID }}
       message: "🟢 Maven build success for ${{ github.repository }}\n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
