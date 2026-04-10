@@ -26,7 +26,7 @@ jobs:
   post-failure-to-slack:
     needs: deploy-maven
     if: failure()
-    uses: entur/gha-slack/.github/workflows/post.yml@v2
+    uses: entur/gha-slack/.github/workflows/post.yml@v3
     with:
       channel_id: ${{ vars.CHANNEL_ID }}
       message: "🔴 Maven artifact deploy failed for ${{ github.repository }}\n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -35,7 +35,7 @@ jobs:
   post-success-to-slack:
     needs: deploy-maven
     if: success()
-    uses: entur/gha-slack/.github/workflows/post.yml@v2
+    uses: entur/gha-slack/.github/workflows/post.yml@v3
     with:
       channel_id: ${{ vars.CHANNEL_ID }}
       message: "🟢 Maven artifact deploy success for ${{ github.repository }}\n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
