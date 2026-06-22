@@ -1,0 +1,52 @@
+# Continuous Integration — kvalitet golden-path variant (JVM library, Maven)
+#
+# Reusable (workflow_call) AND directly triggered on pull_request. This is a
+# publishing library — there is no deploy here; release happens via deploy-manual.yml.
+# Replaces branch-verify.yml / master-verify.yml.
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build and Test
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/setup-java@ad2b38190b15e4d6bdf0c97fb4fca8412226d287 # v5.3.0
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Build and test
+        run: mvn -B verify
+      - uses: dorny/test-reporter@a43b3a5f7366b97d083190328d2c652e1a8b6aa2 # 3.0.0
+        if: always()
+        with:
+          name: test-results
+          path: "target/surefire-reports/*.xml"
+          reporter: java-junit
+
+  ci:
+    name: CI
+    needs: [test]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: All required CI jobs passed
+        run: |
+          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]]; then
+            echo "::error::A required CI job failed"
+            exit 1
+          fi
